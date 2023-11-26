@@ -66,16 +66,24 @@ const UserBlogs = () => {
           />
         ))
       ) : (
-        <h1
-          style={{
-            fontFamily: "serif",
-            textAlign: "center",
-            marginTop: "40vh",
-            fontSize:"45px"
-          }}
-        >
-          You Haven't Created any blog
-        </h1>
+        <div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/6114/6114045.png"
+            style={{height:"260px", width:"270px", marginTop:"50px", marginLeft:"495px"}}
+          />
+          <h1
+            style={{
+              fontFamily: "serif",
+              textAlign: "center",
+              marginTop: "6vh",
+              fontSize: "45px",
+              marginLeft:"-10px"
+
+            }}
+          >
+            You Haven't Created any blog
+          </h1>
+        </div>
       )}
     </div>
   );
