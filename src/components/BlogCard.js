@@ -34,7 +34,12 @@ export default function BlogCard({
     setLoading(true);
     try {
       const { data } = await axios.delete(
-        `${environment.apiUrl}/api/v1/blog/delete-blog/${id}`
+        `${environment.apiUrl}/api/v1/blog/delete-blog/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (data?.success) {
         toast.success("Blog Deleted Successfully..");
@@ -149,7 +154,7 @@ export default function BlogCard({
             variant="body2"
             color="text.secondary"
             style={{
-              fontFamily:"cursive",
+              fontFamily: "cursive",
               fontSize: "17px",
             }}
           >
