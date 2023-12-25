@@ -22,7 +22,12 @@ const BlogDetails = () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `${environment.apiUrl}/api/v1/blog/get-blog/${id}`
+        `${environment.apiUrl}/api/v1/blog/get-blog/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (data?.success) {
         setBlog(data?.blog);
@@ -62,9 +67,14 @@ const BlogDetails = () => {
           description: inputs.description,
           image: inputs.image,
           user: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
-      console.log("data", data)
+      console.log("data", data);
       if (data?.success) {
         toast.success("Blog Updated");
         navigate("/my-blogs");
@@ -96,7 +106,7 @@ const BlogDetails = () => {
           }}
         >
           <div style={{ height: "5rem", width: "5rem", color: "white" }}>
-            <CircularProgress size={70} style={{color:"#1976D2"}}/>
+            <CircularProgress size={70} style={{ color: "#1976D2" }} />
           </div>
         </div>
       )}
