@@ -7,16 +7,17 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const formatTimestamp = (timestamp) => {
-    const options = { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" };
-    return new Date(timestamp).toLocaleDateString("en-GB", options) + ' ' + new Date(timestamp).toLocaleTimeString();
-  };
   //get blogs
   const getAllBlogs = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `${environment.apiUrl}/api/v1/blog/all-blog`
+        `${environment.apiUrl}/api/v1/blog/all-blog`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (data?.success) {
         setBlogs(data?.blogs);
@@ -50,7 +51,7 @@ const Blogs = () => {
           }}
         >
           <div style={{ height: "5rem", width: "5rem", color: "white" }}>
-            <CircularProgress size={70} style={{color:"#1976D2"}}/>
+            <CircularProgress size={70} style={{ color: "#1976D2" }} />
           </div>
         </div>
       )}
