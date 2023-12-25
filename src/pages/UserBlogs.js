@@ -13,7 +13,12 @@ const UserBlogs = () => {
     try {
       const id = localStorage.getItem("userId");
       const { data } = await axios.get(
-        `${environment.apiUrl}/api/v1/blog/user-blog/${id}`
+        `${environment.apiUrl}/api/v1/blog/user-blog/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (data?.success) {
         setBlogs(data?.userBlog?.blogs);
@@ -69,7 +74,12 @@ const UserBlogs = () => {
         <div>
           <img
             src="https://cdn-icons-png.flaticon.com/512/6114/6114045.png"
-            style={{height:"260px", width:"270px", marginTop:"50px", marginLeft:"495px"}}
+            style={{
+              height: "260px",
+              width: "270px",
+              marginTop: "50px",
+              marginLeft: "495px",
+            }}
           />
           <h1
             style={{
@@ -77,8 +87,7 @@ const UserBlogs = () => {
               textAlign: "center",
               marginTop: "6vh",
               fontSize: "45px",
-              marginLeft:"-10px"
-
+              marginLeft: "-10px",
             }}
           >
             You Haven't Created any blog
