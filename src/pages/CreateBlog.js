@@ -39,6 +39,11 @@ const CreateBlog = () => {
           description: inputs.description,
           image: inputs.image,
           user: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
       if (data?.success) {
@@ -47,6 +52,7 @@ const CreateBlog = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Error occures");
     } finally {
       setLoading(false);
     }
@@ -71,7 +77,7 @@ const CreateBlog = () => {
           }}
         >
           <div style={{ height: "5rem", width: "5rem", color: "white" }}>
-            <CircularProgress size={70} style={{color:"#1976D2"}}/>
+            <CircularProgress size={70} style={{ color: "#1976D2" }} />
           </div>
         </div>
       )}
